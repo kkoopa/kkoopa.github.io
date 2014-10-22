@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-15" />
+		<title>My third website</title>
+<script type="text/javascript">
+//<![CDATA[
+var y;
+function scroll() {
+	var scroller = document.getElementById('scroller');
+	var x = scroller.offsetLeft;
+
+	scroller.style.left = (x > -(scroller.clientWidth) ? (x - 2) : window.innerWidth) + 'px';
+	scroller.style.top = Math.floor(y + 10*Math.sin(x/10)) + 'px';
+        setTimeout(scroll, 40);
+}
+
+function getColor(start, end, percent){
+
+	function hex2dec(hex){return(parseInt(hex,16));}
+
+	function dec2hex(dec){return (dec < 16 ? "0" : "") + dec.toString(16);}
+
+	var r1 = hex2dec(start.slice(0,2)), g1=hex2dec(start.slice(2,4)), b1=hex2dec(start.slice(4,6));
+
+	var r2 = hex2dec(end.slice(0,2)),   g2=hex2dec(end.slice(2,4)),   b2=hex2dec(end.slice(4,6));
+
+	var pc = percent/100;
+
+	var r  = Math.floor(r1+(pc*(r2-r1)) + .5), g=Math.floor(g1+(pc*(g2-g1)) + .5), b=Math.floor(b1+(pc*(b2-b1)) + .5);
+
+	return("#" + dec2hex(r) + dec2hex(g) + dec2hex(b));
+}
+
+var colors = new Array("339966", "FF0000", "00FF00", "0000FF", "FFFF00", "FF00FF", "00FFFF");
+
+var start  = colors[0];
+
+var end    = colors[0];
+
+var index  = 0;
+
+var cindex = 0;
+
+var faderObj = new Array();
+
+
+
+function fadeSpan()
+
+{
+
+	if(index == 0)
+
+	{
+
+		start = end;
+
+		end = colors[ cindex = (cindex+1) % colors.length ];
+
+	}
+
+	for(var i=0; i<faderObj.length; i++)
+
+		faderObj[i].style.color = getColor(start, end, index);
+
+
+
+	index = (index+5) % 100;
+
+
+
+	setTimeout("fadeSpan()", 40);
+
+}
+
+function fadeAll()
+
+{
+
+//	for(var i=0 ; i<arguments.length ; i++)
+//		faderObj[i] = document.getElementById(arguments[i]);
+
+
+	var lame1 = document.getElementsByClassName("inner_eye");
+	
+	var lame2 = document.getElementsByClassName("lolcode");
+
+	var i = 0;
+	for(; i < lame1.length; i++) {
+		faderObj[i] = lame1[i];
+	}
+	for(var j = 0; j < lame2.length; j++) {
+		faderObj[i + j] = lame2[j];
+	}
+	fadeSpan();
+
+}
+
+var fontSize;
+var counter = 3000;
+function zoomPeriodic() {
+	var scroller = document.getElementById('scroller');
+	scroller.style.fontSize = 30 + Math.floor(15 * Math.sin(counter++/window.innerWidth * 13 + 5 * Math.cos(counter / 192) * Math.cos(counter / 192))) + 'px';
+        setTimeout(zoomPeriodic, 40);
+
+}
+
+//]]>
+</script>	</head>
+	<body style="text-align:center;overflow-x:hidden;overflow-y:hidden;" onload="document.getElementById('scroller').style.left = window.innerWidth + 'px';y = document.getElementById('scroller').offsetTop; fadeAll(); fontSize=parseInt(document.getElementById('scroller').style.fontSize); zoomPeriodic(); scroll();" onunload="">
+		<!--<p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>-->
+		<a href="http://prezi.com/utuzr0gtutvz/barnes-hut/"><div id="scroller" style="font-size:15px;position:absolute;left:10000px;"><pre style="text-align:left; color: #106000;">
+      ,'``.._   ,'``.
+     :<span class="inner_eye" style="color:black;">,--.</span>_:)\,:<span class="inner_eye" style="color:black;">,._,.</span>:       <span class="lolcode" style="color:black;">All Glory to</span>
+     :<span class="inner_eye" style="color:black;">`--</span>,''   :<span class="inner_eye" style="color:black;">`...'</span>;\      <span class="lolcode" style="color:black;">the HYPNO TOAD!</span>
+      `,'       `---'  `.
+      /                 :
+     /                   \
+   ,'                     :\.___,-.
+  `...,---'``````-..._    |:       \
+    (                 )   ;:    )   \  _,-.
+     `.              (   //          `'    \
+      :               `.//  )      )     , ;
+    ,-|`.            _,'/       )    ) ,' ,'
+   (  :`.`-..____..=:.-':     .     _,' ,'
+    `,'\ ``--....-<span style="color:red;">)</span>='    `._,  \  ,') _ '``._
+ _.-/ _ `.       <span style="color:yellow;">(_)</span>      /     )' ; / \ \`-.'
+`--(   `-:`.     `' ___..'  _,-'   |/   `.)
+    `-. `.`.``-----``--,  .'
+      |/`.\`'        ,',');
+          `         (/  (/
+</pre></div></a>
+	</body>
+</html>
+
